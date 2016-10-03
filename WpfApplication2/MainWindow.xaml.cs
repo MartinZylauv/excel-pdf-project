@@ -40,7 +40,7 @@ namespace WpfApplication1
             table = new PdfPTable(3);
             table.TotalWidth = 200f;
 
-
+            //test of commit on git, does this work? :-)
 
             //data tilføjes til tabel
             table.AddCell("Row 1, Col 1");
