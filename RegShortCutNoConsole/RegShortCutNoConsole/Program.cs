@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading;
 using System.Runtime.InteropServices;
 
-//TODO: rydop
 
 static class Program
 {
