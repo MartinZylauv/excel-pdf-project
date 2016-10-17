@@ -25,22 +25,22 @@ static class Program
     [STAThread]
     static void Main(string[] arguments)//Windows passes an array of arguments which may be filesnames or folder names.
     {
+        File.WriteAllText("h:\\" + "\\" + arguments[0].ToString() + ".txt", arguments[0].ToString());
 
-
-
-
+        //String navn = arguments[0];
+        //Console.WriteLine(arguments[0]);
 
         //Thread.Sleep(2000);
 
         string path = null;
 
 
-        Thread.Sleep(100);
+        Thread.Sleep(1000);
         {
             foreach (SHDocVw.InternetExplorer window in new SHDocVw.ShellWindows())
             {
 
-
+                
 
                 path = window.LocationURL;
 
@@ -78,13 +78,19 @@ static class Program
 
                         string localPath = new Uri(uriPath).LocalPath;
 
+
+                        DateTime date = DateTime.Now;
+                        string dagsdato = date.ToString("yyyy-dd-MM");
+
                         //string sourcePath = @"\\fs01\Observationer\Wordskabeloner\Obs Afvigelse.docx";
                         //string targetPath = path+"\\test.docx";
-                        System.IO.File.Copy(@"\\fs01\Observationer\Wordskabeloner\Obs Afvigelse.docx", localPath + "\\test.docx", true); //file is being copied to new location.
-                        Thread.Sleep(50);
+
+                        System.IO.File.Copy(@"\\fs01\Observationer\Wordskabeloner\"+ arguments[0].ToString()+".docx", localPath + "\\"+ arguments[0].ToString()+" "+ dagsdato +".docx", true); //file is being copied to new location.
+                        Thread.Sleep(100);
                         Microsoft.Office.Interop.Word.Application ap = new Microsoft.Office.Interop.Word.Application();
                         ap.Visible = true;
-                        Document document = ap.Documents.Open(localPath + "\\test.docx"); //document is being opened.
+
+                        Document document = ap.Documents.Open(localPath + "\\"+ arguments[0].ToString() + " " + dagsdato + ".docx"); //document is being opened.
 
                     }
 
@@ -117,13 +123,13 @@ static class Program
 
 
 
-        string fileName = "Obs Afvigelse.docx"; //TODO:: Lav så filen hedder det som parameteret har haft imellem et punktum og et "/".
+       // string fileName = "Obs Afvigelse.docx"; //TODO:: Lav så filen hedder det som parameteret har haft imellem et punktum og et "/".
                                                 // string[]argumentSplit = arguments[1].Split('\');
 
 
-        string sourcePath = @"\\fs01\Observationer\Wordskabeloner\Obs Afvigelse.docx";
-        string targetPath = @"\\fs01\Observationer\Wordskabeloner\test.docx";
-        System.IO.File.Copy(sourcePath, targetPath, true); //file is being copied to new location.
+      //  string sourcePath = @"\\fs01\Observationer\Wordskabeloner\Obs Afvigelse.docx";
+       // string targetPath = @"\\fs01\Observationer\Wordskabeloner\test.docx";
+        //System.IO.File.Copy(sourcePath, targetPath, true); //file is being copied to new location.
 
         /*
          //TILFØJ EN FIL OG TJEK HER.
